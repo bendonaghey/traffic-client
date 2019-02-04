@@ -1,6 +1,33 @@
-<div style="text-align:center">
-  <h1>Welcome to {{ title }}</h1>
-</div>
-<div><img src="assets/img/counties.png" height="600" width="1200" /></div>
+<div style="width: 1280px; margin: 0 auto; overflow: hidden;">
+  <div style="text-align:center" class="font">
+    <h1>Welcome to {{ title }}</h1>
+  </div>
 
+  <div class="row">
+    <div class="column">
+      <mat-form-field>
+        <input matInput placeholder="Enter Town" />
+      </mat-form-field>
+    </div>
+
+    <div class="column">
+      <mat-form-field>
+        <input matInput placeholder="Enter Town" />
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <h2>Key</h2>
+      <p>Some text..</p>
+    </div>
+  </div>
+
+  <div>
+    <img
+      src="assets/img/counties.PNG"
+      height="700"
+      width="1400"
+      class="center"
+    />
+  </div>
+</div>
 <router-outlet></router-outlet>

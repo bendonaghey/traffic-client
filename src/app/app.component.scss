@@ -1,0 +1,23 @@
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.font {
+  font-size: 20px;
+  font-family: Cambria;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+  height: 100px;
+}
+
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
