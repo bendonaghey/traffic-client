@@ -6,15 +6,26 @@
   <div class="row">
     <div class="column">
       <mat-form-field>
-        <input matInput placeholder="Enter Town" />
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="locationA"
+          placeholder="Enter Town"
+        />
       </mat-form-field>
     </div>
 
     <div class="column">
       <mat-form-field>
-        <input matInput placeholder="Enter Town" />
+        <input
+          type="text"
+          [(ngModel)]="locationB"
+          matInput
+          placeholder="Enter Town"
+        />
       </mat-form-field>
     </div>
+    <button (click)="generateMap()">Go</button>
     <div class="column">
       <h2>Key</h2>
       <p>Some text..</p>
@@ -22,12 +33,7 @@
   </div>
 
   <div>
-    <img
-      src="assets/img/counties.PNG"
-      height="700"
-      width="1400"
-      class="center"
-    />
+    <img src="{{ this.mapUrl }}" class="center" />
   </div>
 </div>
 <router-outlet></router-outlet>
