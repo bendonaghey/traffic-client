@@ -1,39 +1,52 @@
-<div style="width: 1280px; margin: 0 auto; overflow: hidden;">
-  <div style="text-align:center" class="font">
-    <h1>Welcome to {{ title }}</h1>
-  </div>
-
-  <div class="row">
-    <div class="column">
-      <mat-form-field>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="locationA"
-          placeholder="Enter Town"
-        />
-      </mat-form-field>
+<!-- <div style="margin: 20 auto; overflow: hidden;"> -->
+<div class="container">
+  <div flex="20"></div>
+  <div flex>
+    <div style="text-align:center" class="font">
+      <h1>Welcome to {{ title }}</h1>
     </div>
 
-    <div class="column">
-      <mat-form-field>
-        <input
-          type="text"
-          [(ngModel)]="locationB"
-          matInput
-          placeholder="Enter Town"
-        />
-      </mat-form-field>
-    </div>
-    <button (click)="generateMap()">Go</button>
-    <div class="column">
-      <h2>Key</h2>
-      <p>Some text..</p>
-    </div>
-  </div>
+    <div layout="column">
+      <div layout="row">
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="locationA"
+            placeholder="Enter Town"
+          />
+        </mat-form-field>
+      </div>
 
-  <div>
-    <img src="{{ this.mapUrl }}" class="center" />
+      <div layout="row">
+        <mat-form-field>
+          <input
+            type="text"
+            [(ngModel)]="locationB"
+            matInput
+            placeholder="Enter Town"
+          />
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" (click)="generateMap()">
+        Go
+      </button>
+    </div>
+    <div layout="row">
+      <div class="column" align="center" flex="60">
+        <h2>User</h2>
+        <p>Tweet Info..</p>
+      </div>
+      <div class="column" align="center" flex="40">
+        <h2>User</h2>
+        <p>Tweet Info..</p>
+      </div>
+    </div>
+
+    <div>
+      <img src="{{ this.mapUrl }}" class="center" />
+    </div>
   </div>
+  <div flex="20"></div>
 </div>
 <router-outlet></router-outlet>
