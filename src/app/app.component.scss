@@ -1,23 +1,36 @@
+.container {
+  width: 60%;
+  margin: auto;
+  overflow: hidden;
+}
+
 .center {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-.font {
+.font_title {
   font-size: 20px;
-  font-family: Cambria;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  padding: 5%;
 }
 
-.column {
-  float: left;
-  width: 25%;
-  padding: 10px;
-  height: 100px;
+.font_body {
+  font-size: 18px;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  padding: 5%;
+  align: 'center';
 }
 
-.row:after {
-  content: '';
-  display: table;
-  clear: both;
-}
+// .column {
+//   float: left;
+//   width: 30%;
+//   padding: 10px;
+// }
+
+// .row:after {
+//   content: '';
+//   display: table;
+//   clear: both;
+// }

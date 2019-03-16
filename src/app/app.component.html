@@ -1,13 +1,19 @@
-<!-- <div style="margin: 20 auto; overflow: hidden;"> -->
 <div class="container">
-  <div flex="20"></div>
-  <div flex>
-    <div style="text-align:center" class="font">
-      <h1>Welcome to {{ title }}</h1>
-    </div>
+  <div style="text-align:center" class="font_title">
+    <h1>Welcome to {{ title }}</h1>
+  </div>
+  <div class="row" class="font_body">
+    <p>
+      Welcome to Traffic Congestion. Simply type in two towns and the system
+      will let you know traffic information. The text area to the bottom left
+      will display the scraped tweet and the text area to the bottom right will
+      let you know if the road has traffic
+    </p>
+  </div>
 
-    <div layout="column">
-      <div layout="row">
+  <div>
+    <div class="row">
+      <div class="col-md">
         <mat-form-field>
           <input
             matInput
@@ -17,8 +23,7 @@
           />
         </mat-form-field>
       </div>
-
-      <div layout="row">
+      <div class="col-md">
         <mat-form-field>
           <input
             type="text"
@@ -28,25 +33,25 @@
           />
         </mat-form-field>
       </div>
-      <button mat-raised-button color="primary" (click)="generateMap()">
-        Go
-      </button>
+      <div class="col-md">
+        <button mat-raised-button color="primary" (click)="generateMap()">
+          Search
+        </button>
+      </div>
     </div>
-    <div layout="row">
-      <div class="column" align="center" flex="60">
+    <div class="row">
+      <div class="col-md">
+        <h2>User</h2>
+        <p>{{ latestTweet }}</p>
+      </div>
+      <div class="col-md">
         <h2>User</h2>
         <p>Tweet Info..</p>
       </div>
-      <div class="column" align="center" flex="40">
-        <h2>User</h2>
-        <p>Tweet Info..</p>
-      </div>
-    </div>
-
-    <div>
-      <img src="{{ this.mapUrl }}" class="center" />
     </div>
   </div>
-  <div flex="20"></div>
+  <div>
+    <img src="{{ this.mapUrl }}" class="center" />
+  </div>
 </div>
 <router-outlet></router-outlet>

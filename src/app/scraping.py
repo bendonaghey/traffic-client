@@ -14,10 +14,10 @@ for tweets in soup.find_all('div', {"class": "js-tweet-text-container"}):
     scrapedName = soup.title.text
 
 jsonTweets = {
-    'Name: ': scrapedName,
-    'Tweet 1: ': scrapedTweet
+    'Name': scrapedName,
+    'tweet': scrapedTweet
 }
 
 extracted_jsonTweets.append(jsonTweets)
-with open('scrapedTweets.json', 'w') as outfile:
+with open('../assets/scrapedTweets.json', 'w') as outfile:
     json.dump(extracted_jsonTweets, outfile)
