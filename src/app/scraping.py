@@ -9,12 +9,12 @@ soup = BeautifulSoup(twitterRequest, "html.parser")
 
 extracted_jsonTweets = []
 
-for tweets in soup.find_all('div', {"class": "js-tweet-text-container"}):
-    scrapedTweet = tweets.find('p').text
-    scrapedName = soup.title.text
+scrapedTweet = soup.find(
+    'div', {"class": "js-tweet-text-container"}).find('p').text
+scrapedName = soup.title.text
 
 jsonTweets = {
-    'Name': scrapedName,
+    'name': scrapedName,
     'tweet': scrapedTweet
 }
 

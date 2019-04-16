@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as mapquest from 'mapquest';
 import { Subject, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,9 @@ export class AppComponent implements OnInit {
   locationB = '';
 
   latestTweet = 'Tweet Info..';
+  userTweet = 'User';
+
+  trafficUpdate: string;
 
   // setting locations to subject observer in string arrays
   locationASubject = new Subject<string>();
@@ -52,13 +57,13 @@ export class AppComponent implements OnInit {
       .pipe(map(data => data[0]))
       .subscribe(data => {
         this.latestTweet = data.tweet;
-        console.log(this.latestTweet);
+        this.userTweet = data.name;
+        this.searchTweet(this.latestTweet, this.locationA, this.locationB);
       });
 
     mapquest.geocode(
       { address: this.locationA, key: this.key },
       (err, location) => {
-        console.log(location);
         this.locationASubject.next(location.latLng);
       }
     );
@@ -69,5 +74,39 @@ export class AppComponent implements OnInit {
         this.locationBSubject.next(location.latLng);
       }
     );
+  }
+
+  private searchTweet(tweet: string, locationA: string, locationB: string) {
+    const wordArray = tweet.split(' ');
+
+    const keyWords = ['bad', 'good', 'congested', 'slow'];
+
+    let locationAFound: boolean;
+    let locationBFound: boolean;
+
+    let keywordFound = false;
+    wordArray.forEach(word => {
+      const trimmedWord = word.replace(/[.,\s]/g, '');
+      if (trimmedWord === locationA) {
+        locationAFound = true;
+      }
+      if (trimmedWord === locationB) {
+        locationBFound = true;
+      }
+    });
+    if (locationAFound && locationBFound) {
+      wordArray.forEach(word => {
+        const trimmedWord = word.replace(/[.,\s]/g, '');
+        if (keyWords.includes(trimmedWord)) {
+          keywordFound = true;
+        }
+      });
+
+      if (keywordFound) {
+        this.trafficUpdate = 'Traffic here';
+      }
+    } else {
+      this.trafficUpdate = 'No Traffic here';
+    }
   }
 }
