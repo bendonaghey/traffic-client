@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-describe('AppComponent', () => {
+describe('Traffic Congestion Client', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -25,10 +25,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'traffic-client'`, () => {
+  it(`should have title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Traffic Congestion');
+    expect(app.title).toContain('Traffic Congestion Client');
   });
 
   it('should render title in a h1 tag', () => {
@@ -36,7 +36,35 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain(
-      'Traffic Congestion'
+      'Traffic Congestion Client'
     );
+  });
+
+  it('should display description of system', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('p').textContent).not.toBeNull();
+  });
+
+  it('should display twitter username', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h5').textContent).toContain('User');
+  });
+
+  it('should display user latest tweet', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('h6')[0].textContent).not.toBeNull();
+  });
+
+  it('should display relevant traffic information', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('h6')[1].textContent).not.toBeNull();
   });
 });
