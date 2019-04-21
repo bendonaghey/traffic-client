@@ -4,15 +4,13 @@ import { Subject, combineLatest } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
-import * as _ from 'underscore';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Traffic Congestion';
+  title = 'Traffic Congestion Client';
 
   // initialise variables for map, key and locations
   baseUrl = 'https://open.mapquestapi.com/staticmap/v5/map?';
@@ -23,7 +21,8 @@ export class AppComponent implements OnInit {
   latestTweet = 'Tweet Info..';
   userTweet = 'User';
 
-  trafficUpdate: string;
+  trafficUpdate = 'Traffic Information here';
+  returnWord: string;
 
   // setting locations to subject observer in string arrays
   locationASubject = new Subject<string>();
@@ -51,7 +50,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {}
 
   public generateMap() {
-    // generates for user when button is clicked
+    // generates map for user when button is clicked
     this.httpClient
       .get('../assets/scrapedTweets.json')
       .pipe(map(data => data[0]))
@@ -78,35 +77,35 @@ export class AppComponent implements OnInit {
 
   private searchTweet(tweet: string, locationA: string, locationB: string) {
     const wordArray = tweet.split(' ');
-
-    const keyWords = ['bad', 'good', 'congested', 'slow'];
-
+    const keyWords = ['bad', 'good', 'congested', 'slow', 'heavy'];
     let locationAFound: boolean;
     let locationBFound: boolean;
-
     let keywordFound = false;
+
     wordArray.forEach(word => {
       const trimmedWord = word.replace(/[.,\s]/g, '');
-      if (trimmedWord === locationA) {
+
+      if (trimmedWord.toLowerCase() === locationA.toLowerCase()) {
         locationAFound = true;
       }
-      if (trimmedWord === locationB) {
+      if (trimmedWord.toLowerCase() === locationB.toLowerCase()) {
         locationBFound = true;
       }
     });
     if (locationAFound && locationBFound) {
       wordArray.forEach(word => {
         const trimmedWord = word.replace(/[.,\s]/g, '');
-        if (keyWords.includes(trimmedWord)) {
+        if (keyWords.includes(trimmedWord.toLowerCase())) {
           keywordFound = true;
+          this.returnWord = trimmedWord;
         }
       });
 
       if (keywordFound) {
-        this.trafficUpdate = 'Traffic here';
+        this.trafficUpdate = `The traffic is ${this.returnWord.toLowerCase()} on this road `;
       }
     } else {
-      this.trafficUpdate = 'No Traffic here';
+      this.trafficUpdate = 'No known traffic on this road';
     }
   }
 }

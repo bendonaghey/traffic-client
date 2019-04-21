@@ -1,6 +1,6 @@
 <div class="container">
   <div style="text-align:center" class="font_title">
-    <h1>Welcome to {{ title }}</h1>
+    <h1>{{ title }}</h1>
   </div>
   <div class="row" class="font_body">
     <p>
@@ -10,7 +10,6 @@
       let you know if the road has traffic
     </p>
   </div>
-
   <div>
     <div class="row">
       <div class="col-md">
@@ -20,6 +19,7 @@
             type="text"
             [(ngModel)]="locationA"
             placeholder="Enter Town"
+            required="true"
           />
         </mat-form-field>
       </div>
@@ -30,11 +30,17 @@
             [(ngModel)]="locationB"
             matInput
             placeholder="Enter Town"
+            required="true"
           />
         </mat-form-field>
       </div>
       <div class="col-md">
-        <button mat-raised-button color="primary" (click)="generateMap()">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!locationA || !locationB"
+          (click)="generateMap()"
+        >
           Search
         </button>
       </div>
@@ -42,11 +48,10 @@
     <div class="row">
       <div class="col-md">
         <h5>{{ userTweet }}</h5>
-        <p>{{ latestTweet }}</p>
+        <h6>{{ latestTweet }}</h6>
       </div>
       <div class="col-md">
-        <h2>User</h2>
-        <p>{{ trafficUpdate }}</p>
+        <h6>{{ trafficUpdate }}</h6>
       </div>
     </div>
   </div>
