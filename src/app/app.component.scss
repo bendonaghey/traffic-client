@@ -1,24 +1,54 @@
-.container {
-  width: 60%;
-  margin: auto;
-  overflow: hidden;
+.wrapper {
+  display: flex;
+  align-items: stretch;
 }
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+#sidebar {
+  min-width: 0px;
+  max-width: 250px;
+  background: #7386d5;
+  color: #fff;
 }
 
-.font_title {
-  font-size: 20px;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  padding: 5%;
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: #6d7fcc;
 }
 
-.font_body {
-  font-size: 18px;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  padding: 5%;
-  align: 'center';
+#sidebar p {
+  color: #fff;
+  padding: 10px;
+}
+
+#sidebar input {
+  padding: 5px;
+  margin: 7px;
+}
+
+#sidebar button {
+  color: #7386d5;
+  padding: 5px;
+  margin: 7px;
+  width: 100px;
+  align-items: center;
+}
+
+#sidebar button:hover {
+  color: #ffffff;
+  background: #919dcf;
+}
+
+#sidebar input:hover {
+  background: #c5ceff;
+}
+
+#sidebar h5 {
+  color: #fff;
+  padding: 10px;
+  text-decoration: underline;
+}
+
+#sidebar h6 {
+  color: #fff;
+  padding: 10px;
 }

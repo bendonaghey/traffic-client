@@ -21,3 +21,5 @@ jsonTweets = {
 extracted_jsonTweets.append(jsonTweets)
 with open('../assets/scrapedTweets.json', 'w') as outfile:
     json.dump(extracted_jsonTweets, outfile)
+
+print("Script successfully executed")

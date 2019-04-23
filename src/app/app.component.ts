@@ -34,16 +34,16 @@ export class AppComponent implements OnInit {
 
   // placeholder map
   mapUrl =
-    'https://open.mapquestapi.com/staticmap/v5/map?key=eGjnmBVKciAGwk5W721NKLqNRL6J73Jy&center=Derry&size=1000,700';
+    'https://open.mapquestapi.com/staticmap/v5/map?key=eGjnmBVKciAGwk5W721NKLqNRL6J73Jy&center=Derry&size=1400,900';
 
   constructor(private httpClient: HttpClient) {
     // combines both locations lat and long to mapURL string with key
     combineLatest(this.locationA$, this.locationB$).subscribe((res: any) => {
       this.mapUrl = `${this.baseUrl}start=${res[0].lat},${
         res[0].lng
-      }%7Cflag-start&end=${res[1].lat},${res[1].lng}%7Cflag-end&size=@2x&key=${
-        this.key
-      }`;
+      }%7Cflag-start&end=${res[1].lat},${
+        res[1].lng
+      }%7Cflag-end&size=1400,900&key=${this.key}`;
     });
   }
 
@@ -102,10 +102,10 @@ export class AppComponent implements OnInit {
       });
 
       if (keywordFound) {
-        this.trafficUpdate = `The traffic is ${this.returnWord.toLowerCase()} on this road `;
+        this.trafficUpdate = `The traffic is ${this.returnWord.toLowerCase()} between these locations`;
       }
     } else {
-      this.trafficUpdate = 'No known traffic on this road';
+      this.trafficUpdate = 'No known traffic between these locations';
     }
   }
 }
