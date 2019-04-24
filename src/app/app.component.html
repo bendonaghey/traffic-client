@@ -42,111 +42,11 @@
     <hr />
 
     <h5>{{ trafficUpdate }}</h5>
+
     <hr />
   </nav>
 
-  <!-- <div class="container">
-  <div style="text-align:center" class="font_title">
-    <h1>{{ title }}</h1>
-  </div>
-
-  <mat-card>
-    <mat-card-content>
-      <p class="font_body">
-        Welcome to Traffic Congestion. Simply type in two towns and the system
-        will let you know traffic information. The text area to the bottom left
-        will display the scraped tweet and the text area to the bottom right
-        will let you know if the road has traffic
-      </p>
-    </mat-card-content>
-  </mat-card>
-
-<mat-card>
-   <mat-card-content>
-
-   </mat-card-content>
-</mat-card>
-
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Enter Locations</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="row">
-        <div class="col-md">
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              [(ngModel)]="locationA"
-              placeholder="Enter Location A"
-              required="true"
-            />
-          </mat-form-field>
-        </div>
-        <div class="col-md">
-          <mat-form-field>
-            <input
-              type="text"
-              [(ngModel)]="locationB"
-              matInput
-              placeholder="Enter Location B"
-              required="true"
-            />
-          </mat-form-field>
-        </div>
-        <div class="col-md">
-          <button
-            mat-raised-button
-            color="primary"
-            [disabled]="!locationA || !locationB"
-            (click)="generateMap()"
-          >
-            Search
-          </button>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
-
-  <div class="row"></div>
-
-  <div>
-    <div class="row">
-      <mat-card>
-        <mat-card-content>
-          <div class="col-md">
-            <h5>{{ userTweet }}</h5>
-            <h6>{{ latestTweet }}</h6>
-          </div>
-        </mat-card-content>
-      </mat-card>
-      <mat-card>
-        <mat-card-content>
-          <div class="col-md">
-            <h6>{{ trafficUpdate }}</h6>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-
-  <!-- <div>
-    <div class="row">
-      <div class="col-md">
-        <h5>{{ userTweet }}</h5>
-        <h6>{{ latestTweet }}</h6>
-      </div>
-      <div class="col-md">
-        <h6>{{ trafficUpdate }}</h6>
-      </div>
-    </div>
-  </div>
-  <div> -->
   <img src="{{ this.mapUrl }}" class="left" />
-  <!-- </div>
-</div> -->
+
   <router-outlet></router-outlet>
-  <!-- </div>
-</div> -->
 </div>

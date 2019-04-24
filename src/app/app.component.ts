@@ -102,7 +102,7 @@ export class AppComponent implements OnInit {
       });
 
       if (keywordFound) {
-        this.trafficUpdate = `The traffic is ${this.returnWord.toLowerCase()} between these locations`;
+        this.trafficUpdate = `The traffic is "${this.returnWord.toLowerCase()}" between these locations`;
       }
     } else {
       this.trafficUpdate = 'No known traffic between these locations';

@@ -31,12 +31,12 @@ describe('Traffic Congestion Client', () => {
     expect(app.title).toContain('Traffic Congestion Client');
   });
 
-  it('should render title in a h1 tag', () => {
+  it('should render title in a h3 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'Traffic Congestion Client'
+    expect(compiled.querySelector('h3').textContent).toContain(
+      'Traffic Congestion'
     );
   });
 
@@ -51,20 +51,20 @@ describe('Traffic Congestion Client', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h5').textContent).toContain('User');
+    expect(compiled.querySelectorAll('h6')[0].textContent).toContain('User');
   });
 
   it('should display user latest tweet', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelectorAll('h6')[0].textContent).not.toBeNull();
+    expect(compiled.querySelectorAll('h6')[1].textContent).not.toBeNull();
   });
 
   it('should display relevant traffic information', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelectorAll('h6')[1].textContent).not.toBeNull();
+    expect(compiled.querySelector('h5').textContent).not.toBeNull();
   });
 });
