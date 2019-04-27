@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as mapquest from 'mapquest';
 import { Subject, combineLatest } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
