@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Traffic Congestion Client';
 
   // initialise variables for map, key and locations
@@ -24,11 +24,11 @@ export class AppComponent implements OnInit {
   trafficUpdate = 'Traffic Information here';
   returnWord: string;
 
-  // setting locations to subject observer in string arrays
+  // setting emitter for when locations are returned from map quest
   locationASubject = new Subject<string>();
   locationBSubject = new Subject<string>();
 
-  // setting locations to observables
+  // setting up listeners for subject emitters
   locationA$ = this.locationASubject.asObservable();
   locationB$ = this.locationBSubject.asObservable();
 
@@ -47,10 +47,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
   public generateMap() {
-    // generates map for user when button is clicked
+    // updat user with current tweet and username
     this.httpClient
       .get('../assets/scrapedTweets.json')
       .pipe(map(data => data[0]))
@@ -60,6 +58,7 @@ export class AppComponent implements OnInit {
         this.searchTweet(this.latestTweet, this.locationA, this.locationB);
       });
 
+    // async calls to mapquest to get lat and lng for locationA
     mapquest.geocode(
       { address: this.locationA, key: this.key },
       (err, location) => {
@@ -67,6 +66,7 @@ export class AppComponent implements OnInit {
       }
     );
 
+    // async calls to mapquest to get lat and lng for locationB
     mapquest.geocode(
       { address: this.locationB, key: this.key },
       (err, location) => {
@@ -82,6 +82,7 @@ export class AppComponent implements OnInit {
     let locationBFound: boolean;
     let keywordFound = false;
 
+    // trimming locationA and locationB and checking if in tweet
     wordArray.forEach(word => {
       const trimmedWord = word.replace(/[.,\s]/g, '');
 
@@ -92,6 +93,8 @@ export class AppComponent implements OnInit {
         locationBFound = true;
       }
     });
+
+    // trimming keyword and checking if in tweet
     if (locationAFound && locationBFound) {
       wordArray.forEach(word => {
         const trimmedWord = word.replace(/[.,\s]/g, '');
