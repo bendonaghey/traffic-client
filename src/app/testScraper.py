@@ -1,10 +1,8 @@
 import tweepy
 from tweepy import OAuthHandler
 import pandas as pd
-
-"""I like to have my python script print a message at the beginning. This helps me confirm whether everything is set up correctly. And it's nice to get an uplifting message ;)."""
-
-print("You got this!")
+import json
+import boto3
 
 access_token = '322133272-kZNoz2zDmOs97giM1WzYZSwHqpcR9iezXlNA224D'
 access_token_secret = '1NsiktyTVE3FPl5a1cwkrMPvlGs74Mb5R0xtgqww6VkEC'
@@ -13,33 +11,27 @@ consumer_secret = 'nkQNZqjM1OWzp72VFcWiKMafjLvOhavxWWj9eN9aoW4DLi2bQe'
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
+s3 = boto3.resource('s3')
+api = tweepy.API(auth)
+extracted_jsonTweets = []
 
-api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+username = 'BenDonaghey'
+count = 50
+try:
+    tweets = tweepy.Cursor(api.user_timeline).items(count)
+    tweets_list = [[tweet.text] for tweet in tweets]
 
-tweets = []
+    jsonTweets = {
+        'Twitter Handle': username,
+        'Tweets': tweets_list
+    }
 
-count = 1
+    extracted_jsonTweets.append(jsonTweets)
+    with open('../assets/scrapedTweets.json', 'w') as outfile:
+        json.dump(extracted_jsonTweets, outfile)
 
-"""Twitter will automatically sample the last 7 days of data. Depending on how many total tweets there are with the specific hashtag, keyword, handle, or key phrase that you are looking for, you can set the date back further by adding since= as one of the parameters. You can also manually add in the number of tweets you want to get back in the items() section."""
+    s3.Bucket('traffic-client-scrapes').upload_file('../assets/scrapedTweets.json',
+                                                    'scrapedTweets.json', ExtraArgs={'ContentType': "application/json"})
 
-for tweet in tweepy.Cursor(api.search, q="@BenDonaghey", count=450, since='2020-02-28').items(50000):
-	
-	print(count)
-	count += 1
-
-	try: 
-		data = [tweet.created_at, tweet.id, tweet.text, tweet.user._json['screen_name'], tweet.user._json['name'], tweet.user._json['created_at'], tweet.entities['urls']]
-		data = tuple(data)
-		tweets.append(data)
-
-	except tweepy.TweepError as e:
-		print(e.reason)
-		continue
-
-	except StopIteration:
-		break
-
-df = pd.DataFrame(tweets, columns = ['created_at','tweet_id', 'tweet_text', 'screen_name', 'name', 'account_creation_date', 'urls'])
-
-"""Add the path to the folder you want to save the CSV file in as well as what you want the CSV file to be named inside the single quotations"""
-df.to_csv(path_or_buf = '../assets/scrapedTweets.csv', index=False) 
+except BaseException as e:
+    print('failed on_status,', str(e))

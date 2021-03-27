@@ -4,28 +4,28 @@ import urllib.request
 from bs4 import BeautifulSoup
 import json
 import boto3
+import tweepy
+from tweepy import OAuthHandler
+import pandas as pd
 
-API Key = '8j3z6P0uEAHD4xDfEHPXd2b9g'
-Secret Key = '9Q53IhoxWOAP1HfoPB3XTAWb60LAEQl7rNCmXDKAWyGUNiSkij'
+access_token = '322133272-kZNoz2zDmOs97giM1WzYZSwHqpcR9iezXlNA224D'
+access_token_secret = '1NsiktyTVE3FPl5a1cwkrMPvlGs74Mb5R0xtgqww6VkEC'
+consumer_key = 'LQ1Z8YtdVWYwb3aT1HAi74MRA'
+consumer_secret = 'nkQNZqjM1OWzp72VFcWiKMafjLvOhavxWWj9eN9aoW4DLi2bQe'
 
-twitterUrl = "https://mobile.twitter.com/BenDonaghey"
-twitterRequest = urllib.request.urlopen(twitterUrl)
-soup = BeautifulSoup(twitterRequest, "html.parser")
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
+scrapedTweet = api.user_timeline()
 extracted_jsonTweets = []
 
-scrapedTweet = soup.find('p', class_="js-tweet-text-container")
-# soup.find(
-    # 'div', {"class": "js-tweet-text-container"}).find('p').text
-
-# for tweet in soup.find_all('p', class_="tweet-text"):
-#     print ' '.join([line.strip() for line in tweet.get_text().splitlines()])
-
-scrapedName = soup.title.text
+for tweet in scrapedTweet:
+    print(tweet)
 
 jsonTweets = {
-    'name': scrapedName,
-    'tweet': scrapedTweet
+    # 'name': scrapedName,
+    'tweet': tweet
 }
 
 extracted_jsonTweets.append(jsonTweets)
