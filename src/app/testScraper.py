@@ -15,15 +15,15 @@ s3 = boto3.resource('s3')
 api = tweepy.API(auth)
 extracted_jsonTweets = []
 
-username = 'BenDonaghey'
+username = '@BenDonaghey'
 count = 50
 try:
     tweets = tweepy.Cursor(api.user_timeline).items(count)
     tweets_list = [[tweet.text] for tweet in tweets]
 
     jsonTweets = {
-        'Twitter Handle': username,
-        'Tweets': tweets_list
+        'twitter_handle': username,
+        'tweets': tweets_list[0]
     }
 
     extracted_jsonTweets.append(jsonTweets)

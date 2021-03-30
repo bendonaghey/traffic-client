@@ -50,11 +50,12 @@ export class AppComponent {
   public generateMap() {
     // updat user with current tweet and username
     this.httpClient
-      .get('../assets/scrapedTweets.json')
+      // .get('../assets/scrapedTweets.json')
+      .get('https://traffic-client-scrapes.s3.eu-west-2.amazonaws.com/scrapedTweets.json')
       .pipe(map(data => data[0]))
       .subscribe(data => {
-        this.latestTweet = data.tweet;
-        this.userTweet = data.name;
+        this.latestTweet = data.tweets;
+        this.userTweet = data.twitter_handle;
         this.searchTweet(this.latestTweet, this.locationA, this.locationB);
       });
 
@@ -76,7 +77,7 @@ export class AppComponent {
   }
 
   private searchTweet(tweet: string, locationA: string, locationB: string) {
-    const wordArray = tweet.split(' ');
+    const wordArray = tweet.toString().split(' ');
     const keyWords = ['bad', 'good', 'congested', 'slow', 'heavy'];
     let locationAFound: boolean;
     let locationBFound: boolean;
@@ -105,7 +106,7 @@ export class AppComponent {
       });
 
       if (keywordFound) {
-        this.trafficUpdate = `The traffic is "${this.returnWord.toLowerCase()}" between these locations`;
+        this.trafficUpdate = `The traffic is ${this.returnWord.toLowerCase()} between these locations`;
       }
     } else {
       this.trafficUpdate = 'No known traffic between these locations';
