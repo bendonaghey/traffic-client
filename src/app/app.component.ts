@@ -13,7 +13,7 @@ export class AppComponent {
   title = 'Traffic Congestion Client';
 
   // initialise variables for map, key and locations
-  baseUrl = 'http://open.mapquestapi.com/staticmap/v5/map?';
+  baseUrl = '//open.mapquestapi.com/staticmap/v5/map?';
   key = 'eGjnmBVKciAGwk5W721NKLqNRL6J73Jy';
   locationA = '';
   locationB = '';
@@ -34,7 +34,7 @@ export class AppComponent {
 
   // placeholder map
   mapUrl =
-    'http://open.mapquestapi.com/staticmap/v5/map?key=eGjnmBVKciAGwk5W721NKLqNRL6J73Jy&center=Derry&size=1400,900';
+    '//open.mapquestapi.com/staticmap/v5/map?key=eGjnmBVKciAGwk5W721NKLqNRL6J73Jy&center=Derry&size=1400,900';
 
   constructor(private httpClient: HttpClient) {
     // combines both locations lat and long to mapURL string with key
