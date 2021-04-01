@@ -34,7 +34,7 @@ export class AppComponent {
 
   // placeholder map
   mapUrl =
-    'https://open.mapquestapi.com/staticmap/v5/map?key=eGjnmBVKciAGwk5W721NKLqNRL6J73Jy&center=Derry&size=1400,900';
+    'http://open.mapquestapi.com/staticmap/v5/map?key=eGjnmBVKciAGwk5W721NKLqNRL6J73Jy&center=Derry&size=1400,900';
 
   constructor(private httpClient: HttpClient) {
     // combines both locations lat and long to mapURL string with key
