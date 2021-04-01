@@ -13,7 +13,7 @@ export class AppComponent {
   title = 'Traffic Congestion Client';
 
   // initialise variables for map, key and locations
-  baseUrl = 'https://open.mapquestapi.com/staticmap/v5/map?';
+  baseUrl = 'http://open.mapquestapi.com/staticmap/v5/map?';
   key = 'eGjnmBVKciAGwk5W721NKLqNRL6J73Jy';
   locationA = '';
   locationB = '';
