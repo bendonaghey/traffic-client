@@ -14,7 +14,7 @@ export class AppComponent {
 
   // initialise variables for map, key and locations
   baseUrl = 'https://open.mapquestapi.com/staticmap/v5/map?';
-  key = 'uVtVImdMKCEk16e1Xt2ladpbjtIe6XM6';
+  key = '';
   locationA = '';
   locationB = '';
 
