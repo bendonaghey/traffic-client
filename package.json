@@ -25,7 +25,7 @@
     "core-js": "^2.5.4",
     "mapquest": "^0.2.0",
     "ngx-bootstrap": "^3.2.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "underscore": "^1.9.1",
